@@ -69,25 +69,27 @@ window.addEventListener('load', (e) => {
     } else {
       document.querySelector('div#login').style.display = 'none'
       document.querySelector('div#call').style.display = 'block'
+
+      let localStream;
   
-      let localStream
-      try {
-        localStream = await navigator.mediaDevices.getUserMedia({
+      navigator.mediaDevices.getUserMedia({
           video: { width: {exact: 640 }},
           height: { min: 480},
           audio: true
         })
-      } catch (error) {
-        alert(`${error.name}`)
-        console.error(error)
-      }
-  
-      const vid = document.querySelector('video#local');
-      if ('srcObject' in vid) {
-        vid.srcObject = localStream;
-      } else {
-        vid.src = window.URL.createObjectURL(localStream);
-      }
+        .then((stream) => {
+          localStream = stream;
+          const vid = document.querySelector('video#local');
+          if ('srcObject' in vid) {
+            vid.srcObject = localStream;
+          } else {
+            vid.src = window.URL.createObjectURL(localStream);
+          }
+        })
+        .catch(() => {
+          alert(`${error.name}`)
+          console.error(error)
+        })
   
       const configuration = {
         iceServers: [{ url: 'stun:stun2.1.google.com:19302' }]
