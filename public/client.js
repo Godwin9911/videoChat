@@ -84,24 +84,13 @@ window.addEventListener('load', (e) => {
   
       document.querySelector('video#local').srcObject = localStream
   
-      /*const configuration = {
+      const configuration = {
         iceServers: [
           { 
-            url: 'stun:stun2.1.google.com:19302' 
+            url: 'stun.ekiga.net' 
           }
         ]
       }
-      */
-
-     const configuration = {
-      iceServers: [
-        {
-          url: 'turn:numb.viagenie.ca',
-          credential: 'muazkh',
-          username: 'webrtc@live.com'
-        }
-      ]
-     }
   
       connection = new RTCPeerConnection(configuration)
   
