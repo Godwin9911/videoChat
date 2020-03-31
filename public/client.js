@@ -87,7 +87,7 @@ window.addEventListener('load', (e) => {
       const configuration = {
         iceServers: [
           { 
-            url: 'stun.ekiga.net' 
+            url: 'stun:stun.ekiga.net' 
           }
         ]
       }
