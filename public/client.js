@@ -86,7 +86,7 @@ window.addEventListener('load', (e) => {
             vid.src = window.URL.createObjectURL(localStream);
           }
         })
-        .catch(() => {
+        .catch(error => {
           alert(`${error.name}`)
           console.error(error)
         })
