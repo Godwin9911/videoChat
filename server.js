@@ -76,9 +76,14 @@ wss.on('connection', ws => {
   ws.on('close', () => {
     //handle closing
   })
-})
+});
 
-
+app.use(featurePolicy({
+  features: {
+    camera: ["'*'"],
+    microphone: ["'*'"]
+  }
+}));
 
 //public
 app.use(express.static(path.join(__dirname + '/public')));
