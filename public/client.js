@@ -70,26 +70,19 @@ window.addEventListener('load', (e) => {
     } else {
       document.querySelector('div#login').style.display = 'none'
       document.querySelector('div#call').style.display = 'block'
-
-      let localStream;
   
-      navigator.mediaDevices.getUserMedia({
-          video: { width: {exact: 640 }},
-          height: { min: 480},
+      let localStream
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({
+          video: {width: {min: 'auto'}, height: {min: 'auto'}},
           audio: true
         })
-        .then((stream) => {
-          localStream = stream;
-          if ('srcObject' in vid) {
-            vid.srcObject = localStream;
-          } else {
-            vid.src = window.URL.createObjectURL(localStream);
-          }
-        })
-        .catch(error => {
-          alert(`${error.name}`)
-          console.error(error)
-        })
+      } catch (error) {
+        alert(`${error.name}`)
+        console.error(error)
+      }
+  
+      document.querySelector('video#local').srcObject = localStream
   
       const configuration = {
         iceServers: [{ url: 'stun:stun2.1.google.com:19302' }]
@@ -118,7 +111,7 @@ window.addEventListener('load', (e) => {
     const callToUsername = document.querySelector('input#username-to-call').value
   
     if (callToUsername.length === 0) {
-      alert('Enter a username 😉')
+      alert('Enter a username 😉') 
       return
     }
   
