@@ -87,7 +87,12 @@ window.addEventListener('load', (e) => {
       const configuration = {
         iceServers: [
           { 
-            url: 'stun:stun.ekiga.net' 
+            urls: 'stun:stun.ekiga.net' 
+          },
+          {
+            urls: 'turn:numb.viagenie.ca',
+            credential: 'muazkh',
+            username: 'webrtc@live.com'
           }
         ]
       }
