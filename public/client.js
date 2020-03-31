@@ -73,7 +73,8 @@ window.addEventListener('load', (e) => {
       let localStream
       try {
         localStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: { width: {exact: 640 }},
+          height: { min: 480},
           audio: true
         })
       } catch (error) {
