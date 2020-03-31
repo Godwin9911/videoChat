@@ -81,8 +81,8 @@ wss.on('connection', ws => {
 
 app.use(featurePolicy({
   features: {
-    camera: ["'*'"],
-    microphone: ["'*'"]
+    camera: ["*"],
+    microphone: ["*"]
   }
 }));
 
