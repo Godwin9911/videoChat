@@ -81,7 +81,12 @@ window.addEventListener('load', (e) => {
         console.error(error)
       }
   
-      document.querySelector('video#local').srcObject = localStream
+      const vid = document.querySelector('video#local');
+      if ('srcObject' in vid) {
+        vid.srcObject = localStream;
+      } else {
+        vid.src = window.URL.createObjectURL(localStream);
+      }
   
       const configuration = {
         iceServers: [{ url: 'stun:stun2.1.google.com:19302' }]
