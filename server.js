@@ -1,4 +1,5 @@
 const express = require('express');
+const featurePolicy = require('feature-policy');
 const path = require('path');
 const WebSocket = require('ws');
 const PORT = process.env.PORT || 8080;
