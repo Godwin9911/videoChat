@@ -1,4 +1,5 @@
 window.addEventListener('load', (e) => {
+  const vid = document.querySelector('video#local');
   const HOST = location.origin.replace(/^http/, 'ws')
   const ws = new WebSocket(HOST);
   ws.onopen = () => {
@@ -79,7 +80,6 @@ window.addEventListener('load', (e) => {
         })
         .then((stream) => {
           localStream = stream;
-          const vid = document.querySelector('video#local');
           if ('srcObject' in vid) {
             vid.srcObject = localStream;
           } else {
