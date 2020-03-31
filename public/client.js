@@ -78,7 +78,7 @@ window.addEventListener('load', (e) => {
           audio: true
         })
       } catch (error) {
-        alert(`${error.name}`)
+        alert(`${error}`)
         console.error(error)
       }
   
